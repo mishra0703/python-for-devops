@@ -36,6 +36,7 @@ def print_flight_details():
             }
             index+=1    
 
+    print(flight_details)
     with open("Flight_Details.json","w+") as json_file:
         json.dump(flight_details,json_file)
    
