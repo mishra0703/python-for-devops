@@ -41,7 +41,7 @@ def summary_file(logs):
 
 
 Summary_Report = summary_file(count_logs())
-print(Summary_Report)       # Output in Terminal
+print(Summary_Report)                       # Output in Terminal
 
 
 with open("log_summary.txt","w") as log_report:
