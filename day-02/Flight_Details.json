@@ -1,0 +1,24 @@
+{
+  "Flight_1": {
+    "flight_number": "SB740",
+    "airline": "Aircalin",
+    "departure_airport": "Tontouta",
+    "departure_iata": "NOU",
+    "arrival_airport": "Singapore Changi",
+    "arrival_iata": "SIN",
+    "scheduled": "May 01, 2026 at 01:00 AM UTC",
+    "terminal": null,
+    "gate": null
+  },
+  "Flight_2": {
+    "flight_number": "SQ6058",
+    "airline": "Singapore Airlines",
+    "departure_airport": "Tontouta",
+    "departure_iata": "NOU",
+    "arrival_airport": "Singapore Changi",
+    "arrival_iata": "SIN",
+    "scheduled": "May 01, 2026 at 01:00 AM UTC",
+    "terminal": null,
+    "gate": null
+  }
+}
