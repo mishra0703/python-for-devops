@@ -1,0 +1,23 @@
+{
+  "instances": {
+    "instance_1": {
+      "Name": "Linux-for-Devops",
+      "Id": "i-0e0626e20abcaaacf",
+      "State": "stopped"
+    }
+  },
+  "Buckets": {
+    "bucket_1": {
+      "Name": "content-sharing-bucket-007"
+    },
+    "bucket_2": {
+      "Name": "meri-baalti-hai-ye"
+    },
+    "bucket_3": {
+      "Name": "meri-dusri-baalti-hai-ye"
+    },
+    "bucket_4": {
+      "Name": "s3-for-python-for-devops"
+    }
+  }
+}
