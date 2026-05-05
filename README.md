@@ -1,107 +1,110 @@
 # Python For DevOps
 
-This repository is part of the **Python For DevOps – [Live Weekend Batch](https://www.trainwithshubham.com/courses/Python-For-DevOps-AI-Edition-69241796652bda5433f1b0b7)**.
+A collection of Python scripts built while learning Python for real DevOps tasks — covering system monitoring, log analysis, API integration, AWS automation, and CLI tooling.
 
-It is designed to help beginners and DevOps aspirants learn how to use Python for real DevOps tasks such as automation, cloud operations, log analysis, and internal tooling.
-
-The focus is not on Python syntax alone, but on thinking like a DevOps engineer using Python.
+The focus is not on Python syntax alone, but on **thinking like a DevOps engineer** and solving real problems with code.
 
 ---
 
-## Objective
+## Scripts
 
-By the end of this repository, learners should be confident enough to say:
-
-I can write Python scripts to solve DevOps problems.
-
-This repository emphasizes:
-- Practical automation use-cases
-- DevOps-oriented problem solving
-- Beginner-friendly explanations with real-world relevance
+Scripts are listed in the order they were written, following the learning path from basics to AWS automation.
 
 ---
 
-## Repository Structure
+### System Health Monitoring
 
+| Script | Description |
+|--------|-------------|
+| `system_health.py` | Prompts the user to enter threshold values for CPU, memory, and disk usage, then checks live system stats using `psutil` and prints a warning if any metric exceeds its threshold. |
+| `utilities.py` | A shared utility module with two reusable helper functions — `read_file()` for reading any file line by line, and `write_json()` for serialising and saving a Python object as JSON. Meant to be imported by other scripts. |
 
-``` bash
-python-for-devops/
-├── README.md
-├── requirements.txt
-├── day-01/   # LIVE
-├── day-02/   # LIVE
-├── day-03/   # PRACTICE
-├── day-04/   # PRACTICE
-├── day-05/   # PRACTICE
-├── day-06/   # PRACTICE
-├── day-07/   # PRACTICE
-├── day-08/   # LIVE
-├── day-09/   # LIVE
-├── day-10/   # PRACTICE + WRAP-UP
-├── projects/
-└── tests/
+---
+
+### Log Analyzer – Progressive Builds
+
+The log analyzer was built incrementally across multiple days, each version adding a new concept.
+
+| Script | Description |
+|--------|-------------|
+| `log_analyzer.py` | First version — procedural approach. Reads `app.log`, counts `INFO`, `WARNING`, and `ERROR` lines using functions, prints a summary report to the terminal, and saves it to `log_summary.txt`. Includes suggestions if error/warning counts exceed thresholds. |
+| `log_analyzer_oop.py` | OOP refactor of `log_analyzer.py`. Wraps all logic in a `LogAnalyzer` class with `read_logs()`, `count_logs()`, and `summary_file()` methods. Uses a `main()` function as the single entry point and the `if __name__ == "__main__"` guard. |
+| `sample_log_analyzer.py` | Reference/sample version of the OOP log analyzer with full docstrings on every method. Also adds an `UNKNOWN` category for unclassified log lines and handles `FileNotFoundError` gracefully. |
+| `log_analyzer_cli.py` | CLI version of the OOP log analyzer using `argparse`. Accepts `--file` (input log path) and `--out` (output report path) as command-line arguments, making it fully scriptable without editing the source. |
+
+---
+
+### API Integration
+
+| Script | Description |
+|--------|-------------|
+| `api_data_fetcher.py` | Fetches live flight data from the AviationStack API using `requests`. Prompts the user for how many flights to display, formats departure times with `datetime`, and saves structured flight details to `Flight_Details.json`. |
+
+---
+
+### AWS Automation
+
+| Script | Description |
+|--------|-------------|
+| `aws_resource_report.py` | Connects to AWS using `boto3` to list all EC2 instances (with names, IDs, and states) and all S3 buckets, then prints a combined report and saves it to `aws_report.json`. |
+| `aws_demo.py` | Minimal OOP demo of AWS interaction — defines an `AWSUtils` class that connects to S3 via `boto3.client` and collects bucket names into a list via `show_buckets()`. |
+| `s3_utitlites.py` | A more complete `AWSUtils` class covering S3 and EC2 operations — listing buckets, creating a bucket with a region constraint, uploading a file to a bucket, and listing EC2 regions. Demonstrates class-based AWS client management and the `if __name__ == "__main__"` pattern. |
+| `try_s3.py` | Demonstrates module importing — imports `AWSUtils` from `s3_utitlites.py` and calls `show_buckets()`, showing how to split and reuse code across files. |
+
+---
+
+### Notes & Design Docs
+
+| File | Description |
+|------|-------------|
+| `design.md` | Day 7 thinking-before-coding notes — walks through how to approach an unfamiliar problem (converting a Python script to a CLI tool) by reading docs, experimenting, and debugging before touching the code. |
+
+---
+
+## Usage
+
+```bash
+git clone <repo-url>
+cd python-for-devops
+
+# Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
----
 
-## Tech Stack
+**Running scripts:**
 
-- Python 3.13+
-- Linux system utilities
-- AWS Boto3, CDK
-- FastAPI
-- Requests
-- JSON
-- CLI tools (argparse)
-- GitHub
+```bash
+# Procedural / OOP versions
+python log_analyzer.py
+python log_analyzer_oop.py
 
----
+# CLI version (with argparse)
+python log_analyzer_cli.py --file app.log --out report.txt
 
-## Projects Included
+# System health check
+python system_health.py
 
-### Server Health Monitor
-- CPU, memory, disk checks
-- Status-based reporting
-- Beginner-friendly automation
+# AWS automation (requires configured AWS credentials)
+python aws_resource_report.py
+```
 
-### Log Analyzer
-- Parse application logs
-- Count errors and warnings
-- Filter logs by keyword
-
-### Capstone – Python for DevOps Automation
-- AWS automation using Python
-- Internal DevOps tool using FastAPI
-- CLI and API integration
-- Interview-ready project
+> AWS scripts require valid credentials configured via `aws configure` or environment variables.
 
 ---
 
-## Who This Repository Is For
+## Topics Covered
 
-- Absolute beginners in Python
-- DevOps , SRE, Automation Engineers
-- Freshers and career switchers
-- Anyone who is looking to add Python automation skills
-
----
-
-## How to Use This Repository
-
-1. Fork the repository, sync-fork to get latest updates
-2. Create and activate a virtual environment
-3. Install dependencies using requirements.txt
-4. Follow the content day-wise
-5. Experiment, modify, and extend the scripts
-6. Push your assignments and improvements to GitHub
-
----
-
-## Note
-
-This repository is meant for learning and confidence building.
-It focuses on fundamentals and real-world DevOps use-cases rather than production-grade systems.
-
----
-Happy Learning
-
-TrainWithShubham
+- Functions, modules & reusable utilities
+- File I/O — reading logs, writing `.txt` and `.json` reports
+- OOP — classes, `__init__`, methods, `self`
+- `if __name__ == "__main__"` pattern
+- Error handling with `try/except`
+- CLI tooling with `argparse`
+- HTTP APIs with `requests` and JSON parsing
+- AWS automation with `boto3` — EC2 and S3
+- Debugging with `pdb`
+- DevOps mindset — designing before coding
